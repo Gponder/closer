@@ -17,7 +17,7 @@ repositories{
 dependencies {
     compile group: 'commons-io', name: 'commons-io', version: '1.4'
     compile group: 'log4j', name: 'log4j', version: '1.2.15', ext: 'jar'
-    //compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
 	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
     // https://mvnrepository.com/artifact/org.springframework/spring-context
@@ -34,5 +34,5 @@ task createDirs <<{
 	sourceSets*.resources.srcDirs*.each{
 		it.mkdirs()
 	}
-	println "鍒涘缓webApp(false鍙兘鏄枃浠跺凡瀛樺湪):"+new WarPluginConvention(project).getWebAppDir().mkdirs()
+	println "创建webApp(false可能是文件已存在):"+new WarPluginConvention(project).getWebAppDir().mkdirs()
 }
