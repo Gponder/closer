@@ -1,0 +1,38 @@
+buildscript{
+	repositories{
+		maven{
+			url'https://plugins.gradle.org/m2/'
+		}
+	}
+	dependencies{
+		classpath'gradle.plugin.org.gretty:gretty:2.1.0'
+	}
+}
+apply plugin:'org.gretty'
+apply plugin:'war'
+apply plugin:'eclipse'
+repositories{
+	jcenter()
+}
+dependencies {
+    compile group: 'commons-io', name: 'commons-io', version: '1.4'
+    compile group: 'log4j', name: 'log4j', version: '1.2.15', ext: 'jar'
+    //compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+	//compile group: 'org.springframework', name: 'spring-context', version: '5.0.7.RELEASE'
+}
+gretty{
+	httpPort = 8080
+}
+
+task createDirs <<{
+	sourceSets*.java.srcDirs*.each{
+		it.mkdirs()
+	}
+	sourceSets*.resources.srcDirs*.each{
+		it.mkdirs()
+	}
+	println "创建webApp(false可能是文件已存在):"+new WarPluginConvention(project).getWebAppDir().mkdirs()
+}
