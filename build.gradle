@@ -20,6 +20,7 @@ dependencies {
     compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
 	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
+	testCompile 'junit:junit:4.12'
     // https://mvnrepository.com/artifact/org.springframework/spring-context
 	//compile group: 'org.springframework', name: 'spring-context', version: '5.0.7.RELEASE'
 }
@@ -35,4 +36,7 @@ task createDirs <<{
 		it.mkdirs()
 	}
 	println "创建webApp(false可能是文件已存在):"+new WarPluginConvention(project).getWebAppDir().mkdirs()
+}
+task itest <<{
+	println project.version
 }
